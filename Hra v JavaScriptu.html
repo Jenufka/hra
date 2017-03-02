@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)http://start.czechitas.cz/lessons/7-hra.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Hra v JavaScriptu</title>
+	<style>
+		#player {
+			width: 40px;
+			height: 40px;
+			background-color: red;
+			border-radius: 50%;
+			position: absolute;
+			top: 160px;
+			left: 160px;
+		}
+		#food {
+			position: absolute;
+			top: 160px;
+			left: 320px;
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			border: 1px dashed grey;
+		}
+	</style>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			var player = document.getElementById('player');
+
+			window.addEventListener('keydown', function(event) {
+				console.log(event);
+ 					if (event.key == "ArrowUp") {
+	 						console.log ("nahoru");
+	 						player.style.top = player.offsetTop - 10 + "px";
+  		    }
+					if (event.key == "ArrowDown") {
+	 						console.log ("Dolu");
+	 						player.style.top = player.offsetTop + 10 + "px";
+  		    }
+					if (event.key == "ArrowRight") {
+	 						console.log ("Dopravu");
+	 						player.style.left = player.offsetLeft + 10 + "px";
+  		    }
+					if (event.key == "ArrowLeft") {
+	 						console.log ("Doleva");
+	 						player.style.left = player.offsetLeft - 10 + "px";
+  		    }
+					if (isInColision(player, food)) {
+						console.log ("zasah");
+						food.style.top = Math.random() * 410 + "px";
+						food.style.left = Math.random() * 630 + "px";
+					}
+
+			}, true);
+		});
+
+		function isInColision(object1, object2) {
+			var r1 = object1.offsetWidth/2;
+			var r2 = object2.offsetWidth/2;
+			var a = (object1.offsetTop + r1) - (object2.offsetTop + r2);
+			var b = (object1.offsetLeft + r1) - (object2.offsetLeft + r2);
+			var distance = Math.sqrt(a*a + b*b);
+			return distance < r1 + r2;
+		}
+	</script>
+</head>
+<body>
+
+<div id="score"></div>
+<div id="player"></div>
+<div id="food"></div>
+
+
+
+</body></html>
