@@ -25,6 +25,7 @@
 	<script>
 		document.addEventListener("DOMContentLoaded", function() {
 			var player = document.getElementById('player');
+			const food = document.getElementById('food');
 
 			window.addEventListener('keydown', function(event) {
 				console.log(event);
@@ -44,7 +45,7 @@
 	 						console.log ("Doleva");
 	 						player.style.left = player.offsetLeft - 10 + "px";
   		    }
-					if (isInColision(player, food)) {
+					if (isInCollision(player, food)) {
 						console.log ("zasah");
 						food.style.top = Math.random() * 410 + "px";
 						food.style.left = Math.random() * 630 + "px";
@@ -53,7 +54,7 @@
 			}, true);
 		});
 
-		function isInColision(object1, object2) {
+		function isInCollision(object1, object2) {
 			var r1 = object1.offsetWidth/2;
 			var r2 = object2.offsetWidth/2;
 			var a = (object1.offsetTop + r1) - (object2.offsetTop + r2);
